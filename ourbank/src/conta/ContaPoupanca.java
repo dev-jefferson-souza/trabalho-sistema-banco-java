@@ -1,5 +1,7 @@
 package conta;
 
+import pessoal.Usuario;
+
 public class ContaPoupanca extends Conta {
 	
 	private String tipoConta;
@@ -10,7 +12,7 @@ public class ContaPoupanca extends Conta {
 		super();
 	}
 	
-	public ContaPoupanca(int numeroConta, int agencia, double saldo, Cliente cliente, String tipoConta) {
+	public ContaPoupanca(int numeroConta, int agencia, double saldo, Usuario cliente, String tipoConta) {
 		super(numeroConta, agencia, saldo, cliente);
 		this.tipoConta = tipoConta;
 	}

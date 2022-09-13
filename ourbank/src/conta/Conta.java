@@ -3,6 +3,8 @@ package conta;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+import pessoal.Usuario;
+
 public abstract class Conta {
 	
 	Scanner leia = new Scanner(System.in);
@@ -48,7 +50,7 @@ public abstract class Conta {
 		super();
 	}
 	
-	public Conta(int numeroConta, int agencia, double saldo, Cliente cliente) {
+	public Conta(int numeroConta, int agencia, double saldo, Usuario cliente) {
 		super();
 		this.numeroConta = numeroConta;
 		this.agencia = agencia;

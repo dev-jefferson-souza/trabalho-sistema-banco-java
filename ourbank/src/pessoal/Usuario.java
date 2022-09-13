@@ -1,20 +1,21 @@
-package conta;
+package pessoal;
 
-public class Cliente {
+public abstract class Usuario {
 	
 	private String nome;
 	private int idade;
 	public String cpf;
 	private String senha;
+	private String funcao;
 	
 	
 	
 	//construtores
-	public Cliente() {
+	public Usuario() {
 		super();
 	}
 	
-	public Cliente(String nome, int idade, String cpf, String senha) {
+	public Usuario(String nome, int idade, String cpf, String senha) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
@@ -46,6 +47,14 @@ public class Cliente {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getFuncao() {
+		return funcao;
+	}
+
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
 	}
 
 	

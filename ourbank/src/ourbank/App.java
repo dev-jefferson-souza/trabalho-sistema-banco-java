@@ -1,9 +1,10 @@
 package ourbank;
 
-import conta.Cliente;
 import conta.Conta;
 import conta.ContaCorrente;
-import menuInterativo.MenuBase;
+import menu.Menu;
+import pessoal.Gerente;
+import pessoal.Usuario;
 
 public class App {
 
@@ -17,9 +18,7 @@ public class App {
 		conta1.setNumeroConta(2934);
 		conta1.setSenha("1");
 		
-		System.out.println(conta1.toString());
-		
-		MenuBase menu = new MenuBase();
+		Menu menu = new Menu();
 		menu.limparConsole();
 		menu.login(conta1);
 	}

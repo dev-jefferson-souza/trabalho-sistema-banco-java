@@ -1,15 +1,19 @@
 package pessoal;
 
-public class Gerente extends Funcionario {
+import enumSistema.tipoUsuario;
+
+public class Gerente extends Usuario {
 	int agencia;
 	
 	//construtores
 	public Gerente() {
-		super();
+		setFuncao(tipoUsuario.GERENTE.name());
 	}
-	
-	public Gerente(String nomeFuncionario, String cpfFuncionario, String senha, int agencia) {
-		super(nomeFuncionario, cpfFuncionario, senha);
+
+	public Gerente(String cpf, String senha, int agencia) {
+		setCpf(cpf);
+		setSenha(senha);
+		setFuncao(tipoUsuario.GERENTE.name());
 		this.agencia = agencia;
 	}
 

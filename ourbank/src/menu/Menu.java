@@ -1,10 +1,10 @@
-package menuInterativo;
+package menu;
 
 import java.util.Scanner;
 
 import conta.Conta;
 
-public class MenuBase {
+public class Menu {
 	
 	Scanner leia = new Scanner(System.in);
 	int tentativasFalhas = 0;
