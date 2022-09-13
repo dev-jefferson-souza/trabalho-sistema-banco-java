@@ -1,8 +1,11 @@
 package conta;
 
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 public abstract class Conta {
+	
+	Scanner leia = new Scanner(System.in);
 	
 	DecimalFormat df = new DecimalFormat("0.00"); //escolher quantas casas decimais 
 	
@@ -14,25 +17,29 @@ public abstract class Conta {
 	private String senha;
 	
 	//métodos
-	public boolean sacar(double valor) {
-		if(this.saldo < (valor + 0.10)) {
+	public boolean sacar() {
+		System.out.println("Quanto você deseja sacar?");
+		double valorDigitado = leia.nextDouble();
+		if(this.saldo < (valorDigitado + 0.10)) {
 			System.out.println("Saldo insuficiente.");
 			return false;
 		}
 		else {
-			double novoSaldo = this.saldo - (valor + 0.10);
+			double novoSaldo = this.saldo - (valorDigitado + 0.10);
 			saldo = novoSaldo;
 			System.out.println("Saque concluído.");
 			return true;
 		}
 	}
 	
-	public void depositar(double valor) {
-		double novoSaldo = this.saldo + valor - 0.10;
+	public void depositar() {
+		System.out.println("Digite o valor que você deseja depositar: ");
+		double valorDigitado = leia.nextDouble();
+		double novoSaldo = this.saldo + valorDigitado - 0.10;
 		saldo = novoSaldo;
 	}
 	
-	//construtores
+	//construtore
 	public Conta() {
 		super();
 	}
