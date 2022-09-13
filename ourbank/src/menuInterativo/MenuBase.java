@@ -9,7 +9,6 @@ public class MenuBase {
 	Scanner leia = new Scanner(System.in);
 	int tentativasFalhas = 0;
 	int opcao = 0;
-	boolean sair = false;
 	
 
 	//método para checar o login
@@ -41,6 +40,7 @@ public class MenuBase {
 	
 	//menu de base
 	public void menuBase(Conta usuario) {
+		boolean sair = false;
 		do {
 		System.out.println("\n\n\n\n\n\n\n\n\n\nOlá, " + usuario.getNome() + "!\n" );
 		System.out.println("Escolha uma opção:\n");

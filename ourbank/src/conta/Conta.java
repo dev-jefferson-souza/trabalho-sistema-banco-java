@@ -35,8 +35,12 @@ public abstract class Conta {
 	public void depositar() {
 		System.out.println("Digite o valor que você deseja depositar: ");
 		double valorDigitado = leia.nextDouble();
-		double novoSaldo = this.saldo + valorDigitado - 0.10;
-		saldo = novoSaldo;
+		if(valorDigitado >= 0.10) {
+			double novoSaldo = this.saldo + valorDigitado - 0.10;
+			saldo = novoSaldo;
+		} else {
+			System.out.println("Depósito mal sucedido. A quantia digitada não é válida.");
+		}
 	}
 	
 	//construtore
