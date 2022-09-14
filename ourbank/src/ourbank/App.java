@@ -1,25 +1,36 @@
 package ourbank;
 
-import conta.Conta;
-import conta.ContaCorrente;
+import java.io.IOException;
+import java.util.Scanner;
+
+import listas.MapConta;
+import listas.MapUsuario;
 import menu.Menu;
-import pessoal.Gerente;
-import pessoal.Usuario;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
-		//criando conta
-		Conta conta1 = new ContaCorrente();
-		conta1.setCpf("0");
-		conta1.setNome("Rafael");
-		conta1.setAgencia(401);
-		conta1.setNumeroConta(2934);
-		conta1.setSenha("1");
+		Scanner leia = new Scanner(System.in);
+		//boolean sair = false;
 		
-		Menu menu = new Menu();
-		menu.limparConsole();
-		menu.login(conta1);
+		MapConta.leitorDasContas("C:\\Users\\T-GAMER\\OneDrive\\Área de Trabalho\\SerraTec\\Programação orientada a objetos\\Trabalho\\trabalho-sistema-banco-java\\ourbank\\arquivosText\\Contas.txt");
+		MapUsuario.leitorDosUsuarios("C:\\Users\\T-GAMER\\OneDrive\\Área de Trabalho\\SerraTec\\Programação orientada a objetos\\Trabalho\\trabalho-sistema-banco-java\\ourbank\\arquivosText\\Clientes.txt");
+		
+		Menu.bemVindo();
+		
+		System.out.println("Digite seu CPF:");
+		String cpfDigitado = leia.next();
+		System.out.println("\nDigite sua senha:");
+		String senhaDigitada = leia.next();
+		
+		//do {			
+			Menu.login(cpfDigitado,senhaDigitada);
+			
+			Menu.limparConsoleManual();
+			
+		//} while (sair == false);
+		
+		Menu.abreMenu(cpfDigitado);
 	}
 }
