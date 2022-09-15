@@ -1,6 +1,7 @@
 package menu;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import conta.Conta;
 import enumSistema.tipoUsuario;
@@ -39,7 +40,7 @@ public class Menu {
 		if (MapUsuario.getMapaUsuario().get(cpfDigitado).getFuncao().equals(tipoUsuario.CLIENTE.name())) {
 			menuBase(MapConta.getMapaConta().get(cpfDigitado), cpfDigitado);
 		} else if (MapUsuario.getMapaUsuario().get(cpfDigitado).getFuncao().equals(tipoUsuario.GERENTE.name())) {
-			menuBase(MapConta.getMapaConta().get(cpfDigitado), cpfDigitado);			System.out.println("Funcionando gerenmte");
+			menuBase(MapConta.getMapaConta().get(cpfDigitado), cpfDigitado);			System.out.println("Funcionando gerente");
 		} else if (MapUsuario.getMapaUsuario().get(cpfDigitado).getFuncao().equals(tipoUsuario.DIRETOR.name())) {
 			menuBase(MapConta.getMapaConta().get(cpfDigitado), cpfDigitado);
 			System.out.println("Funcionando diretor");
@@ -85,7 +86,8 @@ public class Menu {
 				break;
 			default:
 				System.out.println("Opção inválida.");
-				limparConsole();
+				limparConsoleManual();
+				
 				break;
 			}
 		} while (sair == false);
@@ -132,42 +134,7 @@ public class Menu {
 		System.out.println("[ 1 ] Saldo\t\t\t\t\t\t\t\t\t\t\t[ 0 ] Voltar");
 		System.out.println("[ 2 ] Relatório de tributação da Conta Corrente");
 		System.out.println("[ 3 ] Relatório de rendimento da Conta Poupança");
-		
-		opcao = leia.nextInt();
-		switch (opcao) {
-		case 0:
-			menuBase(usuario, cpfConta);
-			break;
-		case 1:
-			limparConsole();
-			usuario.getSaldo();
-			limparConsoleManual();
-			break;
-		case 2:
-			limparConsole();
-			usuario.relatorioTributacaoCorrente();
-			limparConsoleManual();
-			break;
-		case 3:
-			limparConsole();
-			usuario.relatorioRendimentos();
-			limparConsoleManual();
-			break;
-		default:
-			System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
-			relatorioCliente(usuario, cpfConta);
-			break;
-		}
-	}
-	
-	//[MENU GERENTE] Relatórios
-	public static void relatorioGerente(Conta usuario,  String cpfConta){
-		limparConsole();
-		System.out.println("Relatórios da Conta\n");
-		System.out.println("[ 1 ] Saldo\t\t\t\t\t\t\t\t\t\t\t[ 0 ] Voltar");
-		System.out.println("[ 2 ] Relatório de tributação da Conta Corrente");
-		System.out.println("[ 3 ] Relatório de rendimento da Conta Poupança");
-		System.out.println("[ 4 ] Número de contas existentes em sua agência. [PARA FAZER]");
+		System.out.println("[ 4 ] Seguro de vida");
 		
 		opcao = leia.nextInt();
 		switch (opcao) {
@@ -190,6 +157,53 @@ public class Menu {
 			limparConsoleManual();
 			break;
 		case 4:
+			limparConsole();
+			usuario.seguroVida();
+			limparConsoleManual();
+			break;
+		default:
+			System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+			relatorioCliente(usuario, cpfConta);
+			break;
+		}
+	}
+	
+	//[MENU GERENTE] Relatórios
+	public static void relatorioGerente(Conta usuario,  String cpfConta){
+		limparConsole();
+		System.out.println("Relatórios da Conta\n");
+		System.out.println("[ 1 ] Saldo\t\t\t\t\t\t\t\t\t\t\t[ 0 ] Voltar");
+		System.out.println("[ 2 ] Relatório de tributação da Conta Corrente");
+		System.out.println("[ 3 ] Relatório de rendimento da Conta Poupança");
+		System.out.println("[ 4 ] Seguro de vida");
+		System.out.println("[ 5 ] Número de contas existentes em sua agência. [PARA FAZER]");
+		
+		opcao = leia.nextInt();
+		switch (opcao) {
+		case 0:
+			menuBase(usuario, cpfConta);
+			break;
+		case 1:
+			limparConsole();
+			usuario.getSaldo();
+			limparConsoleManual();
+			break;
+		case 2:
+			limparConsole();
+			usuario.relatorioTributacaoCorrente();
+			limparConsoleManual();
+			break;
+		case 3:
+			limparConsole();
+			usuario.relatorioRendimentos();
+			limparConsoleManual();
+			break;
+		case 4:
+			limparConsole();
+			usuario.seguroVida();
+			limparConsoleManual();
+			break;
+		case 5:
 			limparConsole();
 			System.out.println("[Mostrará a quantidade de contas na mesma agência deste gerente.]");
 			limparConsoleManual();
@@ -208,8 +222,9 @@ public class Menu {
 		System.out.println("[ 1 ] Saldo\t\t\t\t\t\t\t\t\t\t\t[ 0 ] Voltar");
 		System.out.println("[ 2 ] Relatório de tributação da Conta Corrente");
 		System.out.println("[ 3 ] Relatório de rendimento da Conta Poupança");
-		System.out.println("[ 4 ] Relatório de quantidade de contas existentes em sua agência. [PARA FAZER]");
-		System.out.println("[ 5 ] Relatório com informação de nome, CPF e Agência de todos os cliente. [PARA FAZER - ORDEM ALFABÉTICA]");
+		System.out.println("[ 4 ] Seguro de vida");
+		System.out.println("[ 5 ] Relatório de quantidade de contas existentes em sua agência. [PARA FAZER]");
+		System.out.println("[ 6 ] Relatório com informação de nome, CPF e Agência de todos os cliente. [PARA FAZER - ORDEM ALFABÉTICA]");
 		
 		opcao = leia.nextInt();
 		switch (opcao) {
@@ -233,10 +248,15 @@ public class Menu {
 			break;
 		case 4:
 			limparConsole();
-			System.out.println("Mostrará a quantidade de contas na mesma agência deste gerente.");
+			usuario.seguroVida();
 			limparConsoleManual();
 			break;
 		case 5:
+			limparConsole();
+			System.out.println("Mostrará a quantidade de contas na mesma agência deste gerente.");
+			limparConsoleManual();
+			break;
+		case 6:
 			limparConsole();
 			System.out.println("Mostrará as informações de todos os clientes do banco.");
 			limparConsoleManual();
@@ -249,74 +269,80 @@ public class Menu {
 	}
 	
 	//[MENU PRESIDENTE] Relatórios
-		public static void relatorioPresidente(Conta usuario, String cpfConta){
+	public static void relatorioPresidente(Conta usuario, String cpfConta){
+		limparConsole();
+		System.out.println("Relatórios da Conta\n");
+		System.out.println("[ 1 ] Saldo\t\t\t\t\t\t\t\t\t\t\t[ 0 ] Voltar");
+		System.out.println("[ 2 ] Relatório de tributação da Conta Corrente");
+		System.out.println("[ 3 ] Relatório de rendimento da Conta Poupança");
+		System.out.println("[ 4 ] Seguro de vida");
+		System.out.println("[ 5 ] Relatório de quantidade de contas existentes em sua agência. [PARA FAZER]");
+		System.out.println("[ 6 ] Relatório com informação de nome, CPF e Agência de todos os cliente. [PARA FAZER - ORDEM ALFABÉTICA]");
+		System.out.println("[ 7 ] Relatório do capital total armazenado no banco. [PARA FAZER]");
+		
+		opcao = leia.nextInt();
+		switch (opcao) {
+		case 0:
+			menuBase(usuario, cpfConta);
+			break;
+		case 1:
 			limparConsole();
-			System.out.println("Relatórios da Conta\n");
-			System.out.println("[ 1 ] Saldo\t\t\t\t\t\t\t\t\t\t\t[ 0 ] Voltar");
-			System.out.println("[ 2 ] Relatório de tributação da Conta Corrente");
-			System.out.println("[ 3 ] Relatório de rendimento da Conta Poupança");
-			System.out.println("[ 4 ] Relatório de quantidade de contas existentes em sua agência. [PARA FAZER]");
-			System.out.println("[ 5 ] Relatório com informação de nome, CPF e Agência de todos os cliente. [PARA FAZER - ORDEM ALFABÉTICA]");
-			System.out.println("[ 6 ] Relatório do capital total armazenado no banco. [PARA FAZER]");
-			
-			opcao = leia.nextInt();
-			switch (opcao) {
-			case 0:
-				menuBase(usuario, cpfConta);
-				break;
-			case 1:
-				limparConsole();
-				usuario.getSaldo();
-				limparConsoleManual();
-				break;
-			case 2:
-				limparConsole();
-				usuario.relatorioTributacaoCorrente();
-				limparConsoleManual();
-				break;
-			case 3:
-				limparConsole();
-				usuario.relatorioRendimentos();
-				limparConsoleManual();
-				break;
-			case 4:
-				limparConsole();
-				System.out.println("Mostrará a quantidade de contas na mesma agência deste gerente.");
-				limparConsoleManual();
-				break;
-			case 5:
-				limparConsole();
-				System.out.println("Mostrará as informações de todos os clientes do banco.");
-				limparConsoleManual();
-				break;
-			case 6:
-				limparConsole();
-				System.out.println("Mostrará o valor total contido no banco.");
-				limparConsoleManual();
-				break;
-			default:
-				System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
-				relatorioCliente(usuario, cpfConta);
-				break;
-			}
+			usuario.getSaldo();
+			limparConsoleManual();
+			break;
+		case 2:
+			limparConsole();
+			usuario.relatorioTributacaoCorrente();
+			limparConsoleManual();
+			break;
+		case 3:
+			limparConsole();
+			usuario.relatorioRendimentos();
+			limparConsoleManual();
+			break;
+		case 4:
+			limparConsole();
+			usuario.seguroVida();
+			limparConsoleManual();
+			break;
+		case 5:
+			limparConsole();
+			System.out.println("Mostrará a quantidade de contas na mesma agência deste gerente.");
+			limparConsoleManual();
+			break;
+		case 6:
+			limparConsole();
+			System.out.println("Mostrará as informações de todos os clientes do banco.");
+			limparConsoleManual();
+			break;
+		case 7:
+			limparConsole();
+			System.out.println("Mostrará o valor total contido no banco.");
+			limparConsoleManual();
+			break;
+		default:
+			System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+			relatorioCliente(usuario, cpfConta);
+			break;
 		}
+	}
 	
 
-	// métodos para manipuação do console
+	// [MÉTODOS PARA MANIPULAÇÃO DO CONSOLE]
 	public static void limparConsoleManual() {
 		System.out.println("\n--------------------------------------\n");
 		System.out.println("Pressione uma tecla para continuar...");
 		String tecla = leia.next();
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	}
 
 	public static void limparConsole() {
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	}
 
 	public static void bemVindo() {
 		System.out.println("===============================\n");
 		System.out.println("==== BEM VINDO AO OurBank =====\n");
-		System.out.println("===============================\n\n\n\n");
+		System.out.println("===============================\n\n\n");
 	}
 }

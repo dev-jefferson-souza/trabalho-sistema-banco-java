@@ -18,8 +18,9 @@ public abstract class Conta {
 	private String nome;
 	private String cpf;
 	private String senha;
+	private double taxaSeguroVida = 0;
 	
-	//métodos
+	//[MÉTODOS]
 	//EFETUANDO O SAQUE
 	public boolean sacar() {
 		System.out.println("Quanto você deseja sacar?");
@@ -56,6 +57,9 @@ public abstract class Conta {
 		System.out.println("Para cada saque efetuado, será descontado de sua conta R$ 0,10 (dez centavos).");
 		System.out.println("Para cada depósito efetuado, será descontado de sua conta R$ 0,10 (dez centavos).");
 		System.out.println("Para cada transferência efetuada, será descontado da conta do remetente R$ 0,20 (vinte centavos).");
+		if(this.taxaSeguroVida > 0 ) {
+			System.out.println("Taxa tributada referente ao seguro de vida: R$" + df.format(this.taxaSeguroVida));
+		}
 	}
 	
 	//SIMULANDO OS RENDIMENTOS DE UMA CONTA POUPANÇA
@@ -77,7 +81,7 @@ public abstract class Conta {
 	public void transferir() {
 		double valor = leia.nextInt();
 		String contaCpf = leia.next();
-		Conta destino;
+		Conta destino = null;
 		if (this.saldo >= valor) {
 			this.saldo = this.saldo - valor;
 			destino.saldo = destino.saldo + valor;
@@ -87,7 +91,29 @@ public abstract class Conta {
 		}
 	}
 	
-	//construtores
+	//SEGURO DE VIDA [NÃO ESTÁ FUNCIONANDO]
+	public void seguroVida() {
+		System.out.println("Seguro de Vida\n");
+		System.out.println("Atenção: 20% (vinte por cento) do valor segurado será debitádo de sua conta.");
+		System.out.println("Qual o valor você deseja segurar?");
+		double valorSegurado = leia.nextDouble();
+		double seguroTaxa = valorSegurado * 0.20;
+		double novoSaldo = this.saldo - seguroTaxa;
+		
+		if(valorSegurado <= 0){
+			System.out.println("\nO valor digitado é inválido.");
+		}
+		else if(this.saldo >= seguroTaxa) {
+			this.taxaSeguroVida = seguroTaxa;
+			this.saldo = novoSaldo;
+			System.out.println("\nO seguro foi contratado com sucesso.");
+		}
+			else {
+				System.out.println("Não há saldo o suficiente para a contratação do seguro.");
+		}
+	}
+	
+	//[CONSTRUTORES]
 	public Conta() {
 		super();
 	}
@@ -102,7 +128,7 @@ public abstract class Conta {
 		this.senha = senha;
 	}
 
-	//getters e setters
+	//[GETTERS E SETTERS]
 	public int getNumeroConta() {
 		return numeroConta;
 	}
@@ -140,6 +166,10 @@ public abstract class Conta {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public double getTaxaSeguroVida() {
+		return taxaSeguroVida;
 	}
 
 	@Override
