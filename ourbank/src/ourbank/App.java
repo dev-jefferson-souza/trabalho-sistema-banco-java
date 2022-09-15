@@ -14,8 +14,10 @@ public class App {
 		Scanner leia = new Scanner(System.in);
 		//boolean sair = false;
 		
-		MapConta.leitorDasContas("C:\\Users\\T-GAMER\\OneDrive\\Área de Trabalho\\SerraTec\\Programação orientada a objetos\\Trabalho\\trabalho-sistema-banco-java\\ourbank\\arquivosText\\Contas.txt");
-		MapUsuario.leitorDosUsuarios("C:\\Users\\T-GAMER\\OneDrive\\Área de Trabalho\\SerraTec\\Programação orientada a objetos\\Trabalho\\trabalho-sistema-banco-java\\ourbank\\arquivosText\\Clientes.txt");
+		MapConta.leitorDasContas(".\\arquivosText\\Contas.txt");
+		MapUsuario.leitorDosUsuarios(".\\arquivosText\\Clientes.txt");
+		
+			
 		
 		Menu.bemVindo();
 		
@@ -26,11 +28,7 @@ public class App {
 		
 		//do {			
 			Menu.login(cpfDigitado,senhaDigitada);
-			
-			Menu.limparConsoleManual();
-			
 		//} while (sair == false);
 		
-		Menu.abreMenu(cpfDigitado);
 	}
 }
