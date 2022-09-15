@@ -3,9 +3,6 @@ package conta;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-import enumSistema.tipoUsuario;
-import listas.MapUsuario;
-
 public abstract class Conta {
 	
 	Scanner leia = new Scanner(System.in);
@@ -25,7 +22,11 @@ public abstract class Conta {
 	public boolean sacar() {
 		System.out.println("Quanto você deseja sacar?");
 		double valorDigitado = leia.nextDouble();
-		if(this.saldo < (valorDigitado + 0.10)) {
+		if (valorDigitado < 0) {
+			System.out.println("O valor digitado não é válido");
+			return false;
+		}
+		else if(this.saldo < (valorDigitado + 0.10)) {
 			System.out.println("Saldo insuficiente.");
 			return false;
 		}
@@ -82,8 +83,11 @@ public abstract class Conta {
 		double valor = leia.nextInt();
 		String contaCpf = leia.next();
 		Conta destino = null;
-		if (this.saldo >= valor) {
-			this.saldo = this.saldo - valor;
+		if (valor < 0.20) {
+			System.out.println("O valor digitado não é válido.");
+		}
+		else if (this.saldo >= valor + 0.20) {
+			this.saldo = this.saldo - valor - 0.20;
 			destino.saldo = destino.saldo + valor;
 			System.out.println("Transferência feita com sucesso.");
 		} else {
@@ -91,7 +95,7 @@ public abstract class Conta {
 		}
 	}
 	
-	//SEGURO DE VIDA [NÃO ESTÁ FUNCIONANDO]
+	//SEGURO DE VIDA
 	public void seguroVida() {
 		System.out.println("Seguro de Vida\n");
 		System.out.println("Atenção: 20% (vinte por cento) do valor segurado será debitádo de sua conta.");
@@ -104,7 +108,7 @@ public abstract class Conta {
 			System.out.println("\nO valor digitado é inválido.");
 		}
 		else if(this.saldo >= seguroTaxa) {
-			this.taxaSeguroVida = seguroTaxa;
+			this.taxaSeguroVida += seguroTaxa;
 			this.saldo = novoSaldo;
 			System.out.println("\nO seguro foi contratado com sucesso.");
 		}

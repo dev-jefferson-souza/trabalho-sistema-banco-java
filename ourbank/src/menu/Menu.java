@@ -14,6 +14,7 @@ public class Menu {
 	
 	int tentativasFalhas = 0;
 	static int opcao = 0;
+	static boolean sair = false;
 	static String cpfConta;
 
 	// método para checar o login
@@ -40,19 +41,17 @@ public class Menu {
 		if (MapUsuario.getMapaUsuario().get(cpfDigitado).getFuncao().equals(tipoUsuario.CLIENTE.name())) {
 			menuBase(MapConta.getMapaConta().get(cpfDigitado), cpfDigitado);
 		} else if (MapUsuario.getMapaUsuario().get(cpfDigitado).getFuncao().equals(tipoUsuario.GERENTE.name())) {
-			menuBase(MapConta.getMapaConta().get(cpfDigitado), cpfDigitado);			System.out.println("Funcionando gerente");
+			menuBase(MapConta.getMapaConta().get(cpfDigitado), cpfDigitado);		
 		} else if (MapUsuario.getMapaUsuario().get(cpfDigitado).getFuncao().equals(tipoUsuario.DIRETOR.name())) {
 			menuBase(MapConta.getMapaConta().get(cpfDigitado), cpfDigitado);
-			System.out.println("Funcionando diretor");
 		} else if (MapUsuario.getMapaUsuario().get(cpfDigitado).getFuncao().equals(tipoUsuario.PRESIDENTE.name())) {
 			menuBase(MapConta.getMapaConta().get(cpfDigitado), cpfDigitado);
-			System.out.println("Funcionando presidente");
 		}
 	}
 
 	// [MENU BASE]
 	public static void menuBase( Conta conta, String cpfDigitado){ //parâmetro de CPF para fazer a verificação no case 2;
-		boolean sair = false;
+		cpfConta = cpfDigitado;
 		do {
 			System.out.println("\n\n\n\n\n\n\n\n\n\nOlá, " + conta.getNome());
 			System.out.println("Escolha uma opção:\n");
@@ -62,12 +61,12 @@ public class Menu {
 			opcao = leia.nextInt();
 			switch (opcao) {
 			case 0:
-				limparConsole();
-				System.out.println("Obrigado por usar nossos serviços. Tenha um bom dia!");
+				System.out.println("\n\n\nObrigado por usar nossos serviços. Tenha um bom dia!");
+				limparConsoleManual();
 				sair = true;
 				break;
 			case 1:
-				movimentacaoCliente(conta);
+				movimentacaoCliente(conta, cpfConta);
 				limparConsole();
 				break;
 			case 2:
@@ -87,14 +86,13 @@ public class Menu {
 			default:
 				System.out.println("Opção inválida.");
 				limparConsoleManual();
-				
 				break;
 			}
 		} while (sair == false);
 	}
 
 	// [MENU CLIENTE] Movimentação de Conta
-	public static void movimentacaoCliente(Conta usuario) {
+	public static void movimentacaoCliente(Conta usuario, String cpfConta) {
 		limparConsole();
 		System.out.println("Movimentação de Conta\n");
 		System.out.println("[ 1 ] Depósito \t\t\t[ 0 ] Voltar");
