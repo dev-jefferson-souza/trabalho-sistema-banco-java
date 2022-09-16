@@ -11,24 +11,33 @@ public class App {
 
 	public static void main(String[] args) throws IOException {
 		
-		Scanner leia = new Scanner(System.in);
-		//boolean sair = false;
-		
-		MapConta.leitorDasContas(".\\arquivosText\\Contas.txt");
-		MapUsuario.leitorDosUsuarios(".\\arquivosText\\Clientes.txt");
-		
+		try {
 			
-		
-		Menu.bemVindo();
-		
-		System.out.println("Digite seu CPF:");
-		String cpfDigitado = leia.next();
-		System.out.println("\nDigite sua senha:");
-		String senhaDigitada = leia.next();
-		
-		//do {			
+			Scanner leia = new Scanner(System.in);
+			
+			MapConta.leitorDasContas(".\\arquivosText\\Contas.txt");
+			MapUsuario.leitorDosUsuarios(".\\arquivosText\\Clientes.txt");
+			
+			Menu.bemVindo();
+			
+			System.out.println("Digite seu CPF:");
+			String cpfDigitado = leia.next();
+			System.out.println("\nDigite sua senha:");
+			String senhaDigitada = leia.next();
+					
 			Menu.login(cpfDigitado,senhaDigitada);
-		//} while (sair == false);
+			
+			
+			leia.close();
+				
+		
+		} catch ( ArithmeticException e) {
+			System.out.println("Houve um problema");
+		}
+		catch (Exception e) {
+			System.out.println("Aconteceu um erro no sistema. Tente novamente e se o erro persistir entre em contato com o suporte");
+		}
+		
 		
 	}
 }
