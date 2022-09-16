@@ -23,7 +23,7 @@ public abstract class Conta {
 		System.out.println("Quanto você deseja sacar?");
 		double valorDigitado = leia.nextDouble();
 		if (valorDigitado < 0) {
-			System.out.println("O valor digitado não é válido");
+			System.out.println("O valor digitado não é válido.");
 			return false;
 		}
 		else if(this.saldo < (valorDigitado + 0.10)) {
